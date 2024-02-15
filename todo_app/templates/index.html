@@ -13,13 +13,13 @@
         {% for item in items %}
           <li>
             {{ item.title }} -
-            <form action="/toggle?item={{ item.id }}" method="post" class="one-button-form"> 
+            <form action="/toggle" method="post" class="one-button-form"> 
               <input type="hidden" name="itemId" value="{{ item.id }}"/>
                 <input type="submit" 
                   value="{% if item.status == 'Not Started' %}Mark as complete{% else %}Mark as to-do{% endif %}"
                 >
             </form>
-            <form action="/remove?item={{ item.id }}" method="post" class="one-button-form"> 
+            <form action="/remove" method="post" class="one-button-form"> 
               <input type="hidden" name="itemId" value="{{ item.id }}"/>
                 <input type="submit" 
                   value="Remove"
