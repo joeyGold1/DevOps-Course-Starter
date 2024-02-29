@@ -1,5 +1,6 @@
-import todo_app.data.trello_client as trello_client
-import todo_app.data.trello_utils as trello_utils
+from todo_app.data import trello_client
+from todo_app.data import trello_utils
+from todo_app.data.to_do_item import Item
 
 def get_items():
     """
@@ -10,9 +11,8 @@ def get_items():
     """
     trello_items = trello_client.get_items()
 
-    items = map(map_trello_item_to_item, trello_items)
-
-    return list(items)
+    items = list(map(Item.from_trello_card, trello_items))
+    return items
 
 def get_item(id):
     """
@@ -25,7 +25,7 @@ def get_item(id):
         item: The saved item, or None if no items match the specified ID.
     """
     trello_item = trello_client.get_item(id)
-    return map_trello_item_to_item(trello_item)
+    return Item.from_trello_card(trello_item)
 
 
 def add_item(title):
@@ -42,7 +42,7 @@ def add_item(title):
 
     trello_item = trello_client.create_item(title, list_id)
 
-    return map_trello_item_to_item(trello_item)
+    return Item.from_trello_card(trello_item)
 
 
 def save_item(item):
@@ -52,9 +52,8 @@ def save_item(item):
     Args:
         item: The item to save.
     """
-    
-    trello_item = map_item_to_trello_item(item)
-    updated_item = map_trello_item_to_item(trello_client.update_item(trello_item))
+    trello_item = item.to_trello_card()
+    updated_item = Item.from_trello_card(trello_client.update_item(trello_item))
 
     return updated_item
 
@@ -67,15 +66,3 @@ def remove_item(id):
     """
     
     trello_client.delete_item(id)
-
-map_trello_item_to_item = lambda trello_item: {
-                    "id": trello_item["id"],
-                    "title": trello_item["name"],
-                    "status": trello_utils.id_to_status[trello_item["idList"]]
-                }
-
-map_item_to_trello_item = lambda item: {
-    "id": item["id"],
-    "name": item["title"],
-    "idList": trello_utils.status_to_id[item["status"]]
-}

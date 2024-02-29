@@ -11,28 +11,28 @@ app.config.from_object(Config())
 @app.route('/')
 def index():
     items = get_items()
-    not_started_items = [item for item in items if item["status"]=="Not Started"]
-    complete_items = [item for item in items if item["status"]=="Complete"]
+    not_started_items = [item for item in items if item.status=="Not Started"]
+    complete_items = [item for item in items if item.status=="Complete"]
     return render_template('index.html', not_started_items=not_started_items, complete_items=complete_items)
 
 @app.route('/add', methods=["POST"])
 def add():
-    new_item = request.form.get('item_title')
-    add_item(new_item)
+    new_item_title = request.form.get('item_title')
+    add_item(new_item_title)
     return redirect('/')
 
 @app.route('/complete', methods=["POST"])
 def complete():
-    item_to_toggle = get_item(request.form.get('itemId'))
-    item_to_toggle['status'] = 'Complete' 
-    save_item(item_to_toggle)
+    item_to_mark_complete = get_item(request.form.get('itemId'))
+    item_to_mark_complete.status = 'Complete' 
+    save_item(item_to_mark_complete)
     return redirect('/')
 
 @app.route('/uncomplete', methods=["POST"])
 def uncomplete():
-    item_to_toggle = get_item(request.form.get('itemId'))
-    item_to_toggle['status'] = 'Not Started'
-    save_item(item_to_toggle)
+    item_to_mark_to_do = get_item(request.form.get('itemId'))
+    item_to_mark_to_do.status = 'Not Started'
+    save_item(item_to_mark_to_do)
     return redirect('/')
 
 @app.route('/remove', methods=['POST'])
