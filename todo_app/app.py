@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request
-from todo_app.data.session_items import add_item, get_item, get_items, remove_item, save_item
+from todo_app.data.trello_items_service import add_item, get_item, get_items, remove_item, save_item
 
 from todo_app.flask_config import Config
 
