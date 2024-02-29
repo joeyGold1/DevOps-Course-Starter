@@ -1,5 +1,6 @@
 import os
 import requests
+from todo_app.data.errors import TrelloApiError
 
 trello_base_url = "https://api.trello.com/1"
 
@@ -51,4 +52,7 @@ def make_trello_request(path, request_method = "GET", request_params = {}):
         trello_base_url + path,
         params = authentication_params | trello_params | request_params
     )
-    return response.json()
+    try:
+        return response.json()
+    except:
+        raise TrelloApiError(response.text, path, request_method) 

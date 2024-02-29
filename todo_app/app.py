@@ -1,4 +1,5 @@
 from flask import Flask, redirect, render_template, request
+from todo_app.data.errors import TrelloApiError
 from todo_app.data.trello_items_service import add_item, get_item, get_items, remove_item, save_item
 
 from todo_app.flask_config import Config
@@ -29,4 +30,9 @@ def toggle_complete():
 def remove():
     itemId = request.form.get('itemId')
     remove_item(itemId)
+    return redirect('/')
+
+@app.errorhandler(TrelloApiError)
+def handle_trello_api_error(e):
+    print(e)
     return redirect('/')

@@ -3,16 +3,14 @@ import todo_app.data.trello_utils as trello_utils
 
 def get_items():
     """
-    Fetches all saved items from the session.
+    Fetches all saved items from trello.
 
     Returns:
         list: The list of saved items.
     """
     trello_items = trello_client.get_items()
 
-    items = map(map_trello_item_to_item
-                , trello_items
-                )
+    items = map(map_trello_item_to_item, trello_items)
 
     return list(items)
 
@@ -32,7 +30,7 @@ def get_item(id):
 
 def add_item(title):
     """
-    Adds a new item with the specified title to the session.
+    Adds a new item with the specified title to the trello board.
 
     Args:
         title: The title of the item.
@@ -49,7 +47,7 @@ def add_item(title):
 
 def save_item(item):
     """
-    Updates an existing item in the session. If no existing item matches the ID of the specified item, nothing is saved.
+    Updates an existing item in the trello. If no existing item matches the ID of the specified item, nothing is saved.
 
     Args:
         item: The item to save.
@@ -62,7 +60,7 @@ def save_item(item):
 
 def remove_item(id):
     """
-    Removes an existing item from the session. If no existing item matches the ID of the specified item, nothing is removed.
+    Removes an existing item from the trello board. If no existing item matches the ID of the specified item, nothing is removed.
 
     Args:
         id: The ID of the item to remove.
