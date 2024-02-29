@@ -8,15 +8,35 @@
 
   <div class="row">
     <div class="col">
-      <h2>Items</h2>
+      <h2>Completed Items</h2>
       <ul class="list-group mb-4">
-        {% for item in items %}
+        {% for item in complete_items %}
           <li>
             {{ item.title }} -
-            <form action="/toggle" method="post" class="one-button-form"> 
+            <form action="/uncomplete" method="post" class="one-button-form"> 
               <input type="hidden" name="itemId" value="{{ item.id }}"/>
                 <input type="submit" 
-                  value="{% if item.status == 'Not Started' %}Mark as complete{% else %}Mark as to-do{% endif %}"
+                  value="Mark as to-do"
+                >
+            </form>
+            <form action="/remove" method="post" class="one-button-form"> 
+              <input type="hidden" name="itemId" value="{{ item.id }}"/>
+                <input type="submit" 
+                  value="Remove"
+                >
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+      <h2>Items To Do</h2>
+      <ul class="list-group mb-4">
+        {% for item in not_started_items %}
+          <li>
+            {{ item.title }} -
+            <form action="/complete" method="post" class="one-button-form"> 
+              <input type="hidden" name="itemId" value="{{ item.id }}"/>
+                <input type="submit" 
+                  value="Mark as complete"
                 >
             </form>
             <form action="/remove" method="post" class="one-button-form"> 

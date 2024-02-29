@@ -10,8 +10,10 @@ app.config.from_object(Config())
 
 @app.route('/')
 def index():
-    items = sorted(get_items(), key=lambda item: 1 if item['status'] == "Not Started" else 2)
-    return render_template('index.html', items=items)
+    items = get_items()
+    not_started_items = [item for item in items if item["status"]=="Not Started"]
+    complete_items = [item for item in items if item["status"]=="Complete"]
+    return render_template('index.html', not_started_items=not_started_items, complete_items=complete_items)
 
 @app.route('/add', methods=["POST"])
 def add():
@@ -19,10 +21,17 @@ def add():
     add_item(new_item)
     return redirect('/')
 
-@app.route('/toggle', methods=["POST"])
-def toggle_complete():
+@app.route('/complete', methods=["POST"])
+def complete():
     item_to_toggle = get_item(request.form.get('itemId'))
-    item_to_toggle['status'] = 'Complete' if item_to_toggle['status'] == 'Not Started' else 'Not Started'
+    item_to_toggle['status'] = 'Complete' 
+    save_item(item_to_toggle)
+    return redirect('/')
+
+@app.route('/uncomplete', methods=["POST"])
+def uncomplete():
+    item_to_toggle = get_item(request.form.get('itemId'))
+    item_to_toggle['status'] = 'Not Started'
     save_item(item_to_toggle)
     return redirect('/')
 
