@@ -12,9 +12,7 @@ trello_items_service = TrelloItemsService()
 @app.route('/')
 def index():
     items = trello_items_service.get_items()
-    not_started_items = [item for item in items if item.status=="Not Started"]
-    complete_items = [item for item in items if item.status=="Complete"]
-    items_view_model = ViewModel(not_started_items, complete_items)
+    items_view_model = ViewModel(items)
     return render_template('index.html', view_model=items_view_model)
 
 @app.route('/add', methods=["POST"])
