@@ -4,8 +4,8 @@ class ViewModel:
  
     @property
     def not_started_items(self):
-        return []
+        return [item for item in self._items if item.status == "To Do"]
 
     @property
     def complete_items(self):
-        return []
+        return [item for item in self._items if item.status == "Complete"]
