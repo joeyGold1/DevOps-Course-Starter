@@ -3,6 +3,7 @@ from todo_app.data.errors import TrelloApiError
 from todo_app.data.trello_items_service import TrelloItemsService
 
 from todo_app.flask_config import Config
+from todo_app.view_model import ViewModel
 
 app = Flask(__name__)
 app.config.from_object(Config())
@@ -13,7 +14,8 @@ def index():
     items = trello_items_service.get_items()
     not_started_items = [item for item in items if item.status=="Not Started"]
     complete_items = [item for item in items if item.status=="Complete"]
-    return render_template('index.html', not_started_items=not_started_items, complete_items=complete_items)
+    items_view_model = ViewModel(not_started_items, complete_items)
+    return render_template('index.html', view_model=items_view_model)
 
 @app.route('/add', methods=["POST"])
 def add():

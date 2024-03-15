@@ -10,7 +10,7 @@
     <div class="col">
       <h2>Completed Items</h2>
       <ul class="list-group mb-4">
-        {% for item in complete_items %}
+        {% for item in view_model.complete_items %}
           <li>
             {{ item.title }} -
             <form action="/uncomplete" method="post" class="one-button-form"> 
@@ -30,7 +30,7 @@
       </ul>
       <h2>Items To Do</h2>
       <ul class="list-group mb-4">
-        {% for item in not_started_items %}
+        {% for item in view_model.not_started_items %}
           <li>
             {{ item.title }} -
             <form action="/complete" method="post" class="one-button-form"> 
