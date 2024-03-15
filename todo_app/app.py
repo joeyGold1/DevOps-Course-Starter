@@ -21,19 +21,14 @@ def add():
     trello_items_service.add_item(new_item_title)
     return redirect('/')
 
-@app.route('/complete', methods=["POST"])
-def complete():
-    item_to_mark_complete = trello_items_service.get_item(request.form.get('itemId'))
-    item_to_mark_complete.status = 'Complete' 
-    trello_items_service.save_item(item_to_mark_complete)
+@app.route('/mark/<status>', methods=["POST"])
+def mark_status(status):
+    item_to_mark_status = trello_items_service.get_item(request.form.get('itemId'))
+    status_to_mark = {"complete": "Complete", "to_do": "To Do", "in_progress": "In Progress"}[status]
+    item_to_mark_status.status = status_to_mark
+    trello_items_service.save_item(item_to_mark_status)
     return redirect('/')
 
-@app.route('/uncomplete', methods=["POST"])
-def uncomplete():
-    item_to_mark_to_do = trello_items_service.get_item(request.form.get('itemId'))
-    item_to_mark_to_do.status = 'Not Started'
-    trello_items_service.save_item(item_to_mark_to_do)
-    return redirect('/')
 
 @app.route('/remove', methods=['POST'])
 def remove():
