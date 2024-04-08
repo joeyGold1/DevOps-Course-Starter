@@ -32,7 +32,7 @@
         chdir: /opt/todoapp
     - name: Create .env
       ansible.builtin.template:
-        remote_src: /opt/todoapp/.env.j2
+        src: .env.j2
         dest: /opt/todoapp/.env
         owner: ec2-user
     
