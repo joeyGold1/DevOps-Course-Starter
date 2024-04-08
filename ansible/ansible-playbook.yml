@@ -35,4 +35,16 @@
         src: .env.j2
         dest: /opt/todoapp/.env
         owner: ec2-user
+    - name: Copy todoapp.service
+      ansible.builtin.copy:
+        src: todoapp.service
+        dest: /etc/systemd/system/todoapp.service
+      become: yes
+    - name: Start todo app
+      ansible.builtin.systemd:
+        name: todoapp.service
+        daemon_reload: true
+        state: restarted
+      become: yes
+
     
