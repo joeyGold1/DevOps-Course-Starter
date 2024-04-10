@@ -18,7 +18,7 @@
     - name: Create todo app directory
       ansible.builtin.file:
         state: directory
-        path: /opt/todoappF
+        path: /opt/todoapp
         owner: ec2-user
       become: yes
     - name: Clone the to-do repository
