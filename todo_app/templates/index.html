@@ -8,15 +8,15 @@
 
   <div class="row">
     <div class="col">
-      <h2>Completed Items</h2>
+      <h2>Items To Do</h2>
       <ul class="list-group mb-4">
-        {% for item in view_model.complete_items %}
+        {% for item in view_model.not_started_items %}
           <li>
             {{ item.title }} -
             <form action="/mark/in_progress" method="post" class="one-button-form"> 
               <input type="hidden" name="itemId" value="{{ item.id }}"/>
                 <input type="submit" 
-                  value="Mark as in progress"
+                  value="Mark as started"
                 >
             </form>
             <form action="/remove" method="post" class="one-button-form"> 
@@ -54,15 +54,15 @@
           </li>
         {% endfor %}
       </ul>
-      <h2>Items To Do</h2>
+      <h2>Completed Items</h2>
       <ul class="list-group mb-4">
-        {% for item in view_model.not_started_items %}
+        {% for item in view_model.complete_items %}
           <li>
             {{ item.title }} -
             <form action="/mark/in_progress" method="post" class="one-button-form"> 
               <input type="hidden" name="itemId" value="{{ item.id }}"/>
                 <input type="submit" 
-                  value="Mark as started"
+                  value="Mark as in progress"
                 >
             </form>
             <form action="/remove" method="post" class="one-button-form"> 
