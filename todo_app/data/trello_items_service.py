@@ -42,12 +42,11 @@ class TrelloItemsService:
         Returns:
             item: The saved item.
         """
-        list_id = self.trello_utils.status_to_id["Not Started"]
+        list_id = self.trello_utils.status_to_id["To Do"]
 
         trello_item = self.trello_client.create_item(title, list_id)
 
         return Item.from_trello_card(trello_item, self.trello_utils)
-
 
     def save_item(self, item):
         """

@@ -46,7 +46,7 @@ To run the app, you will need to:
  - Generate a new API key (shows as an option after creating the Power Up)
 3. Create a API Token for Trello from the “Token” link on the page where your API key is displayed:
 4. Create a board
-5. Create 2 lists on the board
+5. Create 3 lists on the board
 6. Open dev tools and view network requests. Filter by 'lists'
 7. View the response to the request at /1/board/...
 8. Copy the id (as board id) and from lists, copy the id of each list
@@ -71,3 +71,14 @@ Press CTRL+C to quit
  * Debugger PIN: 113-666-066
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+## Running tests
+The entire test suite can be run within the poetry environment by running
+```bash
+$ poetry run pytest
+```
+
+Individual test suites can be run by running
+```bash
+$ poetry run pytest <PATH_TO_TEST>
+```
