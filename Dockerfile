@@ -1,13 +1,18 @@
-FROM python:3.12.3-alpine
-RUN pip install poetry
+FROM python:3.12.3-alpine as base
+    RUN pip install poetry
+    WORKDIR /app
+    COPY poetry.lock ./
+    COPY pyproject.toml ./
+    RUN poetry install
 
-WORKDIR /app
+FROM base as development
+    ENV FLASK_ENV development
+    ENTRYPOINT ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
+    EXPOSE 5000
 
-COPY todo_app ./todo_app
-COPY poetry.lock ./
-COPY pyproject.toml ./
-RUN poetry install
+FROM base as production
+    COPY todo_app ./todo_app
+    ENTRYPOINT ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
+    EXPOSE 5000:5000
 
-ENTRYPOINT ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
-EXPOSE 5000:5000
-
+    
