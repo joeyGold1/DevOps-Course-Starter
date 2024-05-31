@@ -1,0 +1,50 @@
+- name: Set up managed node
+  hosts: hosts
+  remote_user: ec2-user
+  vars_prompt:
+    - name: trello_api_key
+      prompt: Enter a Trello API key
+    - name: trello_api_token
+      prompt: Enter a trello API token
+  tasks:
+    - name: Install git and python
+      ansible.builtin.yum:
+        name: 
+          - git
+          - python3
+      become: yes
+    - name: Install poetry
+      ansible.builtin.shell: curl -sSL https://install.python-poetry.org | python3 -
+    - name: Create todo app directory
+      ansible.builtin.file:
+        state: directory
+        path: /opt/todoapp
+        owner: ec2-user
+      become: yes
+    - name: Clone the to-do repository
+      ansible.builtin.git:
+        repo: https://github.com/joeyGold1/DevOps-Course-Starter.git
+        dest: /opt/todoapp
+        version: exercise4
+    - name: Install dependencies
+      ansible.builtin.shell: /home/ec2-user/.local/bin/poetry install
+      args:
+        chdir: /opt/todoapp
+    - name: Create .env
+      ansible.builtin.template:
+        src: .env.j2
+        dest: /opt/todoapp/.env
+        owner: ec2-user
+    - name: Copy todoapp.service
+      ansible.builtin.copy:
+        src: todoapp.service
+        dest: /etc/systemd/system/todoapp.service
+      become: yes
+    - name: Start todo app
+      ansible.builtin.systemd:
+        name: todoapp.service
+        daemon_reload: true
+        state: restarted
+      become: yes
+
+    
