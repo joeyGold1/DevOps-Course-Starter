@@ -32,7 +32,7 @@ $ docker build --target development --tag todo-app:dev .
 ```
 2. To run the development image, run:
 ```bash
-$ docker run --env-file ./.env -p 8080:5000 --mount "type=bind,source=$(pwd)/todo_app,target=/app/todo_app" todo-app:dev`
+$ docker run --env-file ./.env -p 8080:5000 --mount "type=bind,source=$(pwd)/todo_app,target=/app/todo_app" todo-app:dev
 ```
 
 The app should then be accessible at localhost:8080
