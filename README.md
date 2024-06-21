@@ -2,7 +2,54 @@
 
 > If you are using GitPod for the project exercise (i.e. you cannot use your local machine) then you'll want to launch a VM using the [following link](https://gitpod.io/#https://github.com/CorndelWithSoftwire/DevOps-Course-Starter). Note this VM comes pre-setup with Python & Poetry pre-installed.
 
-## System Requirements
+## Dependencies
+The first thing you will need to do to run the app is clone a new `.env` file from the `.env.template` to store local configuration options. This is a one-time operation on first setup.
+```bash
+$ cp .env.template .env
+```
+
+### Trello Dependencies
+To run the app, you will need to:
+1. Create a Trello account
+2. Create an API Key for Trello
+ - Create a Trello Power Up (https://trello.com/power-ups/admin)
+ - Generate a new API key (shows as an option after creating the Power Up)
+3. Create a API Token for Trello from the “Token” link on the page where your API key is displayed:
+4. Create a board
+5. Create 3 lists on the board
+6. Open dev tools and view network requests. Filter by 'lists'
+7. View the response to the request at /1/board/...
+8. Copy the id (as board id) and from lists, copy the id of each list
+9. Enter all of these into your .env file
+
+## Running the App Using Docker (Recommended)
+The above dependencies are sufficient for running the app in a Docker Container using the instructions below:
+### For local development
+Using these instructions will give you debug logs and code changes appearing without having to rebuild the image.
+1. To build the development image, run:
+```bash
+$ docker build --target development --tag todo-app:dev .
+```
+2. To run the development image, run:
+```bash
+$ docker run --env-file ./.env -p 8080:5000 --mount "type=bind,source=$(pwd)/todo_app,target=/app/todo_app" todo-app:dev`
+```
+
+The app should then be accessible at localhost:8080
+
+### For a deployed production environment
+
+1. To build the production image, run
+```bash
+$ docker build --target production --tag todo-app:prod .
+```
+2. To build the production image, run
+```bash
+$ dockerun --env-file <ENV FILE LOCATION> -p 80:5000 todo-app:prod
+```
+
+## System Requirements If Not Using Docker
+If you cannot use Docker, continue reading to see the rest of the instructions.
 
 The project uses poetry for Python to create an isolated environment and manage package dependencies. To prepare your system, ensure you have an official distribution of Python version 3.8+ and install Poetry using one of the following commands (as instructed by the [poetry documentation](https://python-poetry.org/docs/#system-requirements)):
 
@@ -30,27 +77,7 @@ The project uses a virtual environment to isolate package dependencies. To creat
 $ poetry install
 ```
 
-You'll also need to clone a new `.env` file from the `.env.template` to store local configuration options. This is a one-time operation on first setup:
-
-```bash
-$ cp .env.template .env  # (first time only)
-```
-
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/2.3.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
-
-## Trello Dependencies
-To run the app, you will need to:
-1. Create a Trello account
-2. Create an API Key for Trello
- - Create a Trello Power Up (https://trello.com/power-ups/admin)
- - Generate a new API key (shows as an option after creating the Power Up)
-3. Create a API Token for Trello from the “Token” link on the page where your API key is displayed:
-4. Create a board
-5. Create 3 lists on the board
-6. Open dev tools and view network requests. Filter by 'lists'
-7. View the response to the request at /1/board/...
-8. Copy the id (as board id) and from lists, copy the id of each list
-9. Enter all of these into your .env file
 
 ## Running the App
 
