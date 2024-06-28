@@ -45,7 +45,7 @@ $ docker build --target production --tag todo-app:prod .
 ```
 2. To build the production image, run
 ```bash
-$ dockerun --env-file <ENV FILE LOCATION> -p 80:5000 todo-app:prod
+$ docker run --env-file <ENV FILE LOCATION> -p 80:5000 todo-app:prod
 ```
 
 ## System Requirements If Not Using Docker
