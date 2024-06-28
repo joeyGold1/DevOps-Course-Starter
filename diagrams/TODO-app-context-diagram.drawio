@@ -1,0 +1,31 @@
+<mxfile host="app.diagrams.net" modified="2024-06-28T15:06:03.310Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="FnppR7R5yssDFA9zXv1k" version="24.6.4" type="device">
+  <diagram name="Page-1" id="fiBWzSPiSi6_Q-JAlUde">
+    <mxGraphModel dx="1050" dy="1718" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="6pr3OtrRR4nEWjrluSzE-14" value="&#xa;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-size: 11px; text-align: left; background-color: rgb(255, 255, 255);&quot;&gt;Views, creates,&lt;/span&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-size: 11px; text-align: left;&quot;&gt;updates and deletes&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-size: 11px; text-align: left;&quot;&gt;their tasks&lt;/div&gt;&#xa;&#xa;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" edge="1" parent="1" source="6pr3OtrRR4nEWjrluSzE-1" target="6pr3OtrRR4nEWjrluSzE-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6pr3OtrRR4nEWjrluSzE-1" value="&lt;b&gt;User&lt;/b&gt;&lt;div&gt;wants&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;to track&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;their tasks&lt;/span&gt;&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=middle;verticalAlign=middle;html=1;outlineConnect=0;labelPosition=right;align=left;" vertex="1" parent="1">
+          <mxGeometry x="350" y="-152" width="50" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="6pr3OtrRR4nEWjrluSzE-8" value="Gets, creates&lt;div&gt;updates and deletes&lt;/div&gt;&lt;div&gt;task data&lt;/div&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" edge="1" parent="1" source="6pr3OtrRR4nEWjrluSzE-3" target="6pr3OtrRR4nEWjrluSzE-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6pr3OtrRR4nEWjrluSzE-3" value="&lt;b&gt;todo-app&lt;/b&gt;&lt;div&gt;Allows users to create, delete, update the status of and track their tasks by using its UI&amp;nbsp;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="300" y="180" width="150" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="6pr3OtrRR4nEWjrluSzE-4" value="&lt;div&gt;&lt;b&gt;Trello&lt;/b&gt;&lt;/div&gt;&lt;div&gt;Stores the current tasks and their states.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="300" y="330" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="6pr3OtrRR4nEWjrluSzE-15" value="Makes HTTP&amp;nbsp;&lt;div&gt;requests&lt;/div&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;align=left;labelPosition=right;verticalLabelPosition=middle;verticalAlign=middle;labelBackgroundColor=default;" edge="1" parent="1" source="6pr3OtrRR4nEWjrluSzE-12" target="6pr3OtrRR4nEWjrluSzE-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6pr3OtrRR4nEWjrluSzE-12" value="&lt;b&gt;Web Browser&lt;/b&gt;&lt;div&gt;Displays web page and handles user interactions.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="300" y="50" width="150" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
