@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" modified="2024-06-28T15:33:32.871Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="rV4p5S0saO55GkdG8-aM" version="24.6.4" type="device">
+  <diagram name="Page-1" id="0PycMk9thyyUhH5SyRL8">
+    <mxGraphModel dx="1050" dy="618" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="aFKmT2xun2jeYw1U3Rap-22" value="&lt;b&gt;Application code&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#fff2cc;align=left;verticalAlign=top;spacingTop=15;spacingLeft=15;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="100" y="110" width="650" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="aFKmT2xun2jeYw1U3Rap-10" value="&lt;div&gt;&lt;b&gt;Trello&lt;/b&gt;&lt;/div&gt;&lt;div&gt;Stores tasks and their states.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="350" y="480" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Rni_juSJ_0mf1MY1BiSX-20" value="Passes requests to" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" edge="1" parent="1" source="aFKmT2xun2jeYw1U3Rap-13" target="Rni_juSJ_0mf1MY1BiSX-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aFKmT2xun2jeYw1U3Rap-13" value="&lt;b&gt;Flask Server&lt;/b&gt;&lt;div&gt;Sends requests to the Python application.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="350" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Rni_juSJ_0mf1MY1BiSX-3" value="Renders using&lt;div&gt;view model&lt;/div&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelPosition=left;verticalLabelPosition=bottom;align=right;verticalAlign=top;" edge="1" parent="1" source="Rni_juSJ_0mf1MY1BiSX-1" target="Rni_juSJ_0mf1MY1BiSX-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Rni_juSJ_0mf1MY1BiSX-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelPosition=right;verticalLabelPosition=bottom;align=left;verticalAlign=top;" edge="1" parent="1" source="Rni_juSJ_0mf1MY1BiSX-1" target="Rni_juSJ_0mf1MY1BiSX-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Rni_juSJ_0mf1MY1BiSX-1" value="&lt;div&gt;&lt;b&gt;app.py&lt;/b&gt;&lt;/div&gt;&lt;div&gt;Entry point in code for incoming requests. Builds response to user by rendering web pages or redirecting.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="322.5" y="120" width="205" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Rni_juSJ_0mf1MY1BiSX-2" value="&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;b&gt;Jinja Template&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;Template for page. Can be rendered given view model data.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="230" width="170" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="Rni_juSJ_0mf1MY1BiSX-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Rni_juSJ_0mf1MY1BiSX-4" target="Rni_juSJ_0mf1MY1BiSX-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Rni_juSJ_0mf1MY1BiSX-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Rni_juSJ_0mf1MY1BiSX-4" target="Rni_juSJ_0mf1MY1BiSX-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Rni_juSJ_0mf1MY1BiSX-4" value="&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;b&gt;Trello Items Service&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;Reformats data going to or coming from Trello.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="230" width="170" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="Rni_juSJ_0mf1MY1BiSX-21" value="Sends HTTP requests" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" edge="1" parent="1" source="Rni_juSJ_0mf1MY1BiSX-5" target="aFKmT2xun2jeYw1U3Rap-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Rni_juSJ_0mf1MY1BiSX-5" value="&lt;b&gt;Trello client&lt;/b&gt;&lt;div&gt;Makes API requests to Trello.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="322.5" y="330" width="205" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Rni_juSJ_0mf1MY1BiSX-12" value="&lt;b&gt;Trello Utils&lt;/b&gt;&lt;div&gt;Tools for handling Trello task data.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="327.5" width="170" height="75" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
