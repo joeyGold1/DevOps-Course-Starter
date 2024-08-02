@@ -1,10 +1,7 @@
 name: Continuous Integration
 on: 
-  - push 
-  - pull_request
-  - schedule:
-    - cron: "12 50 * * 5"
-
+  schedule:
+    - cron: '12 50 * * 5'
 jobs:
   build:
     name: Build and test
