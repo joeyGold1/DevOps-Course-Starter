@@ -1,7 +1,7 @@
 name: Continuous Integration
 on: 
   schedule:
-    - cron: '07 12 * * 4'
+    - cron: '16 12 * * 5'
   pull_request:
     types: [opened, reopened]
     paths-ignore:
