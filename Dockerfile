@@ -19,4 +19,3 @@ FROM base as production
 FROM base as test
     COPY todo_app ./todo_app
     ENTRYPOINT ["poetry", "run", "pytest"]
-
