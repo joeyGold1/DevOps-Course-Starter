@@ -1,7 +1,19 @@
 name: Continuous Integration
 on: 
   schedule:
-    - cron: '52 12 * * 5'
+    - cron: '02 12 * * 5'
+  pull_request:
+    types: [opened, reopened]
+    paths-ignore:
+      - '**.md'
+      - '**.svg'
+      - '**.drawio'
+  push:
+    paths-ignore:
+      - '**.md'
+      - '**.svg'
+      - '**.drawio'
+
 jobs:
   build:
     name: Build and test
