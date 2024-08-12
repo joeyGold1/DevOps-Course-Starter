@@ -109,3 +109,6 @@ Individual test suites can be run by running
 ```bash
 $ poetry run pytest <PATH_TO_TEST>
 ```
+
+## CI
+On pushing to github, on opening a pull request, and every Friday lunchtime, a github actions pipeline that runs the tests and checks for vulnerabilities will be run.
