@@ -154,6 +154,9 @@ $ docker build --target production --tag joeygold/todo-app:prod .
 ```bash
 $ docker push joeygold/todo-app:prod
 ```
-3. Call the POST webhook to trigger Azure to restart and pull the latest version of the image from the docker container regsitry. The webhook URL can be found in the deployment centre on the Azure web portal.
+3. Call the POST webhook to trigger Azure to restart the app and pull the latest version of the image from the docker container regsitry. The webhook URL can be found in the deployment centre on the Azure web portal.
+```bash
+$ curl -X POST '{webhook_url}'
+```
 
 The deployed site can be accessed at: https://joegol-todo-webapp.azurewebsites.net/
