@@ -112,3 +112,48 @@ $ poetry run pytest <PATH_TO_TEST>
 
 ## CI
 On pushing to github, on opening a pull request, and every Friday lunchtime, a github actions pipeline that runs the tests and checks for vulnerabilities will be run.
+
+## Deployments
+
+### Initial deployment
+To deploy the app to Azure app service for the first time:
+1. Build the container image: 
+```bash
+$ docker build --target production --tag joeygold/todo-app:prod .
+```
+2. Push the image to docker:
+```bash
+$ docker push joeygold/todo-app:prod
+```
+3. Create an app service plan
+```bash
+$ az appservice plan create --resource-group cohort32-33_JoeGol_ProjectExercise --name JoeGol-todo-app-plan --sku B1 --is-linux
+```
+4. Create an Azure webapp specifying the container image
+```bash
+$  az webapp create --resource-group cohort32-33_JoeGol_ProjectExercise --plan JoeGol-todo-app-plan --name JoeGol-todo-webapp --deployment-container-image-name docker.io/joeygold/todo-app:prod
+```
+5. Set the environment variables. If you have a local env file in .env notation that you would like to use, you can use the script below to convert it to json:
+```bash
+$ ./envJsonConverter.sh {yourEnvFileName} env.json
+```
+If not using actual secrets, `env.json` can be replaced by another file name but using `env.json` is recommended for actual secrets as it is included in `.gitignore`.
+
+Set the config from `env.json` in Azure.
+```bash
+$ az webapp config appsettings set --resource-group cohort32-33_JoeGol_ProjectExercise --name JoeGol-todo-webapp --settings "@env.json"
+```
+
+### Future deployments
+To update the deployed app:
+1. Build the container image: 
+```bash
+$ docker build --target production --tag joeygold/todo-app:prod .
+```
+2. Push the image to docker:
+```bash
+$ docker push joeygold/todo-app:prod
+```
+3. Call the POST webhook to trigger Azure to restart and pull the latest version of the image from the docker container regsitry. The webhook URL can be found in the deployment centre on the Azure web portal.
+
+The deployed site can be accessed at: https://joegol-todo-webapp.azurewebsites.net/
