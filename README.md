@@ -133,11 +133,12 @@ $ az appservice plan create --resource-group cohort32-33_JoeGol_ProjectExercise 
 ```bash
 $  az webapp create --resource-group cohort32-33_JoeGol_ProjectExercise --plan JoeGol-todo-app-plan --name JoeGol-todo-webapp --deployment-container-image-name docker.io/joeygold/todo-app:prod
 ```
-5. Set the environment variables. If you have a local env file in .env notation that you would like to use, you can use the script below to convert it to json:
+5. Set the environment variables. If you have a local env file in .env notation that you would like to use, you can use the script below to convert it to json. `.deployment-env` is a useful template:
 ```bash
 $ ./envJsonConverter.sh {yourEnvFileName} env.json
 ```
-If not using actual secrets, `env.json` can be replaced by another file name but using `env.json` is recommended for actual secrets as it is included in `.gitignore`.
+If using secrets, these should be stored in the key vault and referenced in the environment variables as: `@Microsoft.KeyVault(VaultName=myvault;SecretName=mysecret)`. If only using data that can be checked into source control, `env.json` can be replaced by another file name as it is included in `.gitignore`.
+
 
 Set the config from `env.json` in Azure.
 ```bash
@@ -153,6 +154,16 @@ $ docker build --target production --tag joeygold/todo-app:prod .
 2. Push the image to docker:
 ```bash
 $ docker push joeygold/todo-app:prod
+```
+4. If the environment variables should change, these should be updated by Azure CLI or manually. If you have a local env file in .env notation that you would like to use, you can use the script below to convert it to json. `.deployment-env` is a useful template:
+```bash
+$ ./envJsonConverter.sh {yourEnvFileName} env.json
+```
+If using secrets, these should be stored in the key vault and referenced in the environment variables as: `@Microsoft.KeyVault(VaultName=myvault;SecretName=mysecret)`. If only using data that can be checked into source control, `env.json` can be replaced by another file name as it is included in `.gitignore`.
+
+Set the config from `env.json` in Azure.
+```bash
+$ az webapp config appsettings set --resource-group cohort32-33_JoeGol_ProjectExercise --name JoeGol-todo-webapp --settings "@env.json"
 ```
 3. Call the POST webhook to trigger Azure to restart the app and pull the latest version of the image from the docker container regsitry. The webhook URL can be found in the deployment centre on the Azure web portal.
 ```bash
