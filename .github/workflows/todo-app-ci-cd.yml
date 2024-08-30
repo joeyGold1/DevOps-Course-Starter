@@ -1,5 +1,5 @@
 name: Continuous Integration/Continuous Deployment
-on: 
+on:
   schedule:
     - cron: '25 12 * * 5'
   pull_request:
@@ -50,11 +50,20 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/todo-app
+          tags: |
+            type=raw,value=prod
+            type=sha
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           push: true
           target: production
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:prod , ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:${GITHUB_SHA}
+          tags: ${{ steps.meta.outputs.tags }}
       - name: Run webhook
         run: curl -X POST '${{ secrets.AZURE_WEBHOOK_URL }}'
