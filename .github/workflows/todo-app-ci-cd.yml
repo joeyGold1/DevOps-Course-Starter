@@ -20,7 +20,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - run: docker build --target test --tag todo-app:test .
+    - name: Build and export to Docker
+      uses: docker/build-push-action@v6
+      with:
+        load: true
+        tags: todo-app:test
+        target: test
     - run: docker run --env-file ./.env.test todo-app:test
   security:
     name: Run snyk to check for vulnerabilities
