@@ -31,3 +31,12 @@ jobs:
         uses: snyk/actions/python-3.10@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  deploy:
+    name: Deploy to Azure
+    runs-on: ubuntu-latest
+    if: github.ref_name == 'exercise9' && github.event_name == 'push'
+    needs:
+      - build
+      - security
+    steps:
+      - run: echo 'Deploy to azure not implemented'
