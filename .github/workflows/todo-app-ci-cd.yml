@@ -44,3 +44,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+      - name: Build image
+        run: docker build --target production --tag todo-app:${{ env.GITHUB_SHA }} .
+      - name: Push image to dockerhub
+        run: docker push todo-app:${{ env. GITHUB_SHA }}
+      - name: Run webhook
+        run: curl -X POST '${{ secrets.AZURE_WEBHOOK_URL }}'
+
