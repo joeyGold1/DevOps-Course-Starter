@@ -2,12 +2,10 @@ from flask import Flask, redirect, render_template, request
 from todo_app.data.errors import TrelloApiError
 from todo_app.data.trello_items_service import TrelloItemsService
 
-from todo_app.flask_config import Config
 from todo_app.view_model import ViewModel
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config())
     trello_items_service = TrelloItemsService()
 
     @app.route('/')

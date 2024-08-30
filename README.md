@@ -77,7 +77,7 @@ The project uses a virtual environment to isolate package dependencies. To creat
 $ poetry install
 ```
 
-The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/2.3.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
+The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change).
 
 ## Running the App
 
@@ -112,3 +112,62 @@ $ poetry run pytest <PATH_TO_TEST>
 
 ## CI
 On pushing to github, on opening a pull request, and every Friday lunchtime, a github actions pipeline that runs the tests and checks for vulnerabilities will be run.
+
+## Deployments
+
+### Initial deployment
+To deploy the app to Azure app service for the first time:
+1. Build the container image: 
+```bash
+$ docker build --target production --tag joeygold/todo-app:prod .
+```
+2. Push the image to docker:
+```bash
+$ docker push joeygold/todo-app:prod
+```
+3. Create an app service plan
+```bash
+$ az appservice plan create --resource-group cohort32-33_JoeGol_ProjectExercise --name JoeGol-todo-app-plan --sku B1 --is-linux
+```
+4. Create an Azure webapp specifying the container image
+```bash
+$  az webapp create --resource-group cohort32-33_JoeGol_ProjectExercise --plan JoeGol-todo-app-plan --name JoeGol-todo-webapp --deployment-container-image-name docker.io/joeygold/todo-app:prod
+```
+5. Set the environment variables. If you have a local env file in .env notation that you would like to use, you can use the script below to convert it to json. `.deployment-env` is a useful template:
+```bash
+$ ./envJsonConverter.sh {yourEnvFileName} env.json
+```
+If using secrets, these should be stored in the key vault and referenced in the environment variables as: `@Microsoft.KeyVault(VaultName=myvault;SecretName=mysecret)`. If only using data that can be checked into source control, `env.json` can be replaced by another file name as it is included in `.gitignore`.
+
+
+Set the config from `env.json` in Azure.
+```bash
+$ az webapp config appsettings set --resource-group cohort32-33_JoeGol_ProjectExercise --name JoeGol-todo-webapp --settings "@env.json"
+```
+
+### Future deployments
+To update the deployed app:
+1. Build the container image: 
+```bash
+$ docker build --target production --tag joeygold/todo-app:prod .
+```
+2. Push the image to docker:
+```bash
+$ docker push joeygold/todo-app:prod
+```
+4. If the environment variables should change, these should be updated by Azure CLI or manually. If you have a local env file in .env notation that you would like to use, you can use the script below to convert it to json. `.deployment-env` is a useful template:
+```bash
+$ ./envJsonConverter.sh {yourEnvFileName} env.json
+```
+If using secrets, these should be stored in the key vault and referenced in the environment variables as: `@Microsoft.KeyVault(VaultName=myvault;SecretName=mysecret)`. If only using data that can be checked into source control, `env.json` can be replaced by another file name as it is included in `.gitignore`.
+
+Set the config from `env.json` in Azure.
+```bash
+$ az webapp config appsettings set --resource-group cohort32-33_JoeGol_ProjectExercise --name JoeGol-todo-webapp --settings "@env.json"
+```
+3. Call the POST webhook to trigger Azure to restart the app and pull the latest version of the image from the docker container regsitry. The webhook URL can be found in the deployment centre on the Azure web portal.
+```bash
+$ curl -X POST '{webhook_url}'
+```
+
+The deployed site can be accessed at: https://joegol-todo-webapp.azurewebsites.net/
