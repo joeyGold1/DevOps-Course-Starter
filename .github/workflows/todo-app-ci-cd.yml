@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Build and export to Docker
+    - name: Build test image
       uses: docker/build-push-action@v6
       with:
         load: true
@@ -50,13 +50,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
-      - name: Build image
-        run: docker build --target production --tag ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:$GITHUB_SHA .
-      - name: Push image to dockerhub
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:$GITHUB_SHA
-      - name: Tag image as prod
-        run: docker image tag ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:$GITHUB_SHA ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:prod
-      - name: Push image to dockerhub
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:prod
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          target: production
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:prod , ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:${GITHUB_SHA}
       - name: Run webhook
         run: curl -X POST '${{ secrets.AZURE_WEBHOOK_URL }}'
