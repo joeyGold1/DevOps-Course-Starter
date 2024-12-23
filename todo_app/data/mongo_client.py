@@ -1,7 +1,6 @@
 import os
 from bson.objectid import ObjectId
 import pymongo
-from todo_app.data.errors import TrelloApiError
 
 class MongoClient:
     def __init__(self):

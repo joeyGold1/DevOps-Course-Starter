@@ -1,5 +1,4 @@
 from flask import Flask, redirect, render_template, request, Response
-from todo_app.data.errors import TrelloApiError
 from todo_app.data.mongo_client import MongoClient
 from todo_app.view_model import ViewModel
 
