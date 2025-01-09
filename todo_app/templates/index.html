@@ -14,13 +14,13 @@
           <li>
             {{ item.title }} -
             <form action="/mark/in_progress" method="post" class="one-button-form"> 
-              <input type="hidden" name="itemId" value="{{ item.id }}"/>
+              <input type="hidden" name="itemId" value="{{ item['_id'] }}"/>
                 <input type="submit" 
                   value="Mark as started"
                 >
             </form>
             <form action="/remove" method="post" class="one-button-form"> 
-              <input type="hidden" name="itemId" value="{{ item.id }}"/>
+              <input type="hidden" name="itemId" value="{{ item['_id'] }}"/>
                 <input type="submit" 
                   value="Remove"
                 >
@@ -34,19 +34,19 @@
           <li>
             {{ item.title }} -
             <form action="/mark/complete" method="post" class="one-button-form"> 
-              <input type="hidden" name="itemId" value="{{ item.id }}"/>
+              <input type="hidden" name="itemId" value="{{ item['_id'] }}"/>
                 <input type="submit" 
                   value="Mark as complete"
                 >
             </form>
             <form action="/mark/to_do" method="post" class="one-button-form"> 
-              <input type="hidden" name="itemId" value="{{ item.id }}"/>
+              <input type="hidden" name="itemId" value="{{ item['_id'] }}"/>
                 <input type="submit" 
                   value="Mark as to-do"
                 >
             </form>
             <form action="/remove" method="post" class="one-button-form"> 
-              <input type="hidden" name="itemId" value="{{ item.id }}"/>
+              <input type="hidden" name="itemId" value="{{ item['_id'] }}"/>
                 <input type="submit" 
                   value="Remove"
                 >
@@ -60,13 +60,13 @@
           <li>
             {{ item.title }} -
             <form action="/mark/in_progress" method="post" class="one-button-form"> 
-              <input type="hidden" name="itemId" value="{{ item.id }}"/>
+              <input type="hidden" name="itemId" value="{{ item['_id'] }}"/>
                 <input type="submit" 
                   value="Mark as in progress"
                 >
             </form>
             <form action="/remove" method="post" class="one-button-form"> 
-              <input type="hidden" name="itemId" value="{{ item.id }}"/>
+              <input type="hidden" name="itemId" value="{{ item['_id'] }}"/>
                 <input type="submit" 
                   value="Remove"
                 >

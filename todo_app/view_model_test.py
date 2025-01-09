@@ -1,17 +1,17 @@
-from todo_app.data.to_do_item import Item
 from todo_app.view_model import ViewModel
 
-items = [Item('1', 'Test title 1', 'To Do'),
-            Item('2', 'Test title 2', 'To Do'),
-            Item('3', 'Test title 3', 'In Progress'),
-            Item('4', 'Test title 4', 'Complete'),
-            Item('5', 'Test title 5', 'To Do'),
-            Item('6', 'Test title 6', 'Complete'),
-            Item('7', 'Test title 7', 'To Do'),
-            Item('8', 'Test title 8', 'In Progress'),
-            Item('9', 'Test title 9', 'In Progress'),
-            Item('10', 'Test title 10', 'Complete')
-        ]
+items = [   
+    { '_id': '1', 'title': 'Test title 1', 'list_name': 'To Do' },
+    { '_id': '2', 'title': 'Test title 2', 'list_name': 'To Do' },
+    { '_id': '3', 'title': 'Test title 3', 'list_name': 'In Progress' },
+    { '_id': '4', 'title': 'Test title 4', 'list_name': 'Complete' },
+    { '_id': '5', 'title': 'Test title 5', 'list_name': 'To Do' },
+    { '_id': '6', 'title': 'Test title 6', 'list_name': 'Complete' },
+    { '_id': '7', 'title': 'Test title 7', 'list_name': 'To Do' },
+    { '_id': '8', 'title': 'Test title 8', 'list_name': 'In Progress' },
+    { '_id': '9', 'title': 'Test title 9', 'list_name': 'In Progress' },
+    { '_id': '10', 'title': 'Test title 10', 'list_name': 'Complete' }
+]
 
 def test_view_model_complete_items_property():
     # Arrange
